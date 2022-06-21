@@ -7,7 +7,7 @@ $('.edit').on('click', function (event) {
         dataDiv.attr('contenteditable', 'true');
         dataDiv.css({
             'background-color': 'rgba(253,253,253,1)',
-            border: '1px solid greenyellow'
+            border: '1px solid #fdf1f4'
         })
         edit = !edit;
     }
