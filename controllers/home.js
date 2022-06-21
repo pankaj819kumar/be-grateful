@@ -1,3 +1,4 @@
+const Journal = require('../models/journal');
 const Contact = require('../models/journal');
 
 // to print month name in date
@@ -18,6 +19,7 @@ module.exports.home = function (req, res) {
     });
 }
 module.exports.addJournal = function (req, res) {
+    console.log(req.body);
     Contact.create({
         journal_data: req.body.journal_data,
         date: new Date()
@@ -30,4 +32,17 @@ module.exports.addJournal = function (req, res) {
     res.json({
         journal_data: req.body.journal_data
     });
+}
+
+module.exports.deleteJournal = function (req, res) {
+    let id = req.body.id;
+    Journal.findByIdAndDelete(id, function (err) {
+        if (err) {
+            console.log("error in deleting journal: ", err);
+            return;
+        }
+    })
+    res.json({
+        id:id
+    })
 }

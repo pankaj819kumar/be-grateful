@@ -35,14 +35,12 @@
                             <p class="date">
                                 <%= i.date.getDate() %> <%= monthNames[i.date.getMonth()] %> <%= i.date.getFullYear() %>  
                             </p>
-                            <div class="options">
+                            <div class="options" id="<%= i._id %>">
                                 <button class="edit btn">Edit</button>
                                 <button class="delete btn">Delete</button>
                             </div>
                         </div>
-                        <div class="data-container" contenteditable="false">
-                            <%= i.journal_data %> 
-                        </div>
+                        <div class="data-container" contenteditable="false"><%= i.journal_data %></div>
                     </li>
                 <% } %>
             </ul>

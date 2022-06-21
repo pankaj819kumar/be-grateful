@@ -1,13 +1,13 @@
-// change edit text to save after click
-$('.edit').on('click', function () {
-    if ($('.edit').text() == 'Edit') {
-        $('.edit').text('Save');
-        $('.data-container').attr('contenteditable', 'true');
+// change 'edit' text to 'save' after click
+$('.edit').on('click', function (event) {
+    if ($(this).text() == 'Edit') {
+        $(this).text('Save');
+        $(this).closest('.data-container').attr('contenteditable', 'true');
     }
     else {
-        $('.edit').text('Edit');
-        $('.data-container').attr('contenteditable', 'false');
-        var text = $('.data-container').text();
+        $(this).text('Edit');
+        $(this).closest('.data-container').attr('contenteditable', 'true');
+        var text = $(this).closest('.data-container').text();
         console.log(text);
     }
 });
@@ -42,3 +42,23 @@ $('#btn').on('click', function (event) {
         window.alert('Request failed');
     })
 });
+
+$('.delete').on('click', function (event) {
+    let id = $(this).closest('div').attr('id');
+    $.ajax({
+        method: 'DELETE',
+        url: '/',
+        data: {
+            id: id
+        },
+        success: function (data, status, xhr) {
+            $(document).ajaxStop(function () {
+                setTimeout(function () {
+                    window.location.reload();
+                }, 500);
+            });
+        }
+    }).fail(function () {
+        console.log("request failed");
+    })
+})
