@@ -5,6 +5,7 @@ const homeController = require('../controllers/home');
 router.get('/', homeController.home);
 router.post('/add-journal', homeController.addJournal);
 router.delete('/', homeController.deleteJournal);
+router.put('/', homeController.updateJournal);
 
 
 module.exports = router;

@@ -1,14 +1,27 @@
 // change 'edit' text to 'save' after click
+var edit = true;
 $('.edit').on('click', function (event) {
-    if ($(this).text() == 'Edit') {
-        $(this).text('Save');
-        $(this).closest('.data-container').attr('contenteditable', 'true');
+    let dataDiv = $(this).closest('.journal-top').next();
+    if (edit) {
+        $(this).html('<i class="fa-solid fa-check"></i>');
+        dataDiv.attr('contenteditable', 'true');
+        dataDiv.css({
+            'background-color': 'rgba(253,253,253,1)',
+            border: '1px solid greenyellow'
+        })
+        edit = !edit;
     }
     else {
-        $(this).text('Edit');
-        $(this).closest('.data-container').attr('contenteditable', 'true');
-        var text = $(this).closest('.data-container').text();
-        console.log(text);
+        edit = !edit;
+        $(this).html('<i class="fa-solid fa-pen">');
+        dataDiv.attr('contenteditable', 'false');
+        var text = dataDiv.text();
+        let id = $(this).closest('div').attr('id');
+        updateJournal(text, id);
+        dataDiv.css({
+            'background-color': 'aliceblue',
+            border: 'none'
+        })
     }
 });
 
@@ -38,8 +51,8 @@ $('#btn').on('click', function (event) {
                 window.location.reload();
             }, 500);
         });
-    }).fail(function () {
-        window.alert('Request failed');
+    }).fail(function (err) {
+        window.alert('Request failed', err);
     })
 });
 
@@ -58,7 +71,23 @@ $('.delete').on('click', function (event) {
                 }, 500);
             });
         }
-    }).fail(function () {
-        console.log("request failed");
+    }).fail(function (err) {
+        console.log("delete request failed", err);
     })
 })
+
+function updateJournal(text, id) {
+    $.ajax({
+        method: 'PUT',
+        url: '/',
+        data: {
+            new_journal_data: text,
+            id:id
+        },
+        success: function (data, status, xhr) {
+            console.log('data updated successfully, id:', id);
+        }
+    }).fail(function (err) {
+        console.log('update request failed:', err);
+    })
+}
