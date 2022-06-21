@@ -32,6 +32,12 @@ $('#btn').on('click', function (event) {
         }
     }).done(function (data) {
         $('#input').val("");
+        // refresh page after adding
+        $(document).ajaxStop(function () {
+            setTimeout(function () {
+                window.location.reload();
+            }, 500);
+        });
     }).fail(function () {
         window.alert('Request failed');
     })

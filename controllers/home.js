@@ -6,7 +6,7 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 ];
 
 module.exports.home = function (req, res) {
-    Contact.find({}, function (err, journals) {
+    Contact.find({}).sort({date:-1}).exec(function (err, journals) {
         if (err) {
             console.log("Error in fetching journal from database:", err);
             return;
