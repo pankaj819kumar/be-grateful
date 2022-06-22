@@ -20,7 +20,7 @@ $('.edit').on('click', function (event) {
         let id = $(this).closest('div').attr('id');
         updateJournal(text, id);
         dataDiv.css({
-            'background-color': 'aliceblue',
+            'background-color': '#f5f9fc',
             border: 'none'
         })
     }
@@ -71,6 +71,7 @@ $('#btn').on('click', function (event) {
 });
 
 $('.delete').on('click', function (event) {
+    // this refers to the elemnt which triggered the event
     let id = $(this).closest('div').attr('id');
     $.ajax({
         method: 'DELETE',
@@ -79,6 +80,7 @@ $('.delete').on('click', function (event) {
             id: id
         },
         success: function (data, status, xhr) {
+            // refresh after some to for changes to take effect
             $(document).ajaxStop(function () {
                 setTimeout(function () {
                     window.location.reload();

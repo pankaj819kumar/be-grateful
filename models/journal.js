@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// defining schema
 const journalSchema = new mongoose.Schema({
     journal_data: {
         type: String,
@@ -11,6 +12,7 @@ const journalSchema = new mongoose.Schema({
     }
 });
 
+// making collection in database
 const Journal = mongoose.model('Journal', journalSchema);
 
 module.exports = Journal;
