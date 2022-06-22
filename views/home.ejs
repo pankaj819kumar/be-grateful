@@ -23,7 +23,7 @@
         
         <div id="">
             <form action="/add-journal" method="post" id="input-form">
-                <textarea name="journal_data" id="input" cols="45" rows="auto" placeholder="Enter here"></textarea>
+                <textarea name="journal_data" id="input" cols="45" rows="auto" placeholder="Enter here" spellcheck="false"></textarea>
                 <button type="submit" class="btn" id="btn"><i class="fa-solid fa-check"></i></button>
             </form>
         </div>
@@ -41,14 +41,11 @@
                                 <button class="delete btn"><i class="fa-regular fa-trash-can"></i></button>
                             </div>  
                         </div>
-                        <div class="data-container" contenteditable="false"><%= i.journal_data %></div>
+                        <div class="data-container" contenteditable="false" spellcheck="false"><%= i.journal_data %></div>
                     </li>
                 <% } %>
             </ul>
         </div>
-
-        
-
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="/js/home.js"></script>

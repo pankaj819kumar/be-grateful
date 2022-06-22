@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-
+const dbUrl = process.env.DB_URL;
 async function main() {
-    await mongoose.connect('mongodb+srv://pankaj-be-grateful-journal:huFSHA5O2f5IgSCx@be-grateful-database.y7kqc.mongodb.net/be_grateful_db?retryWrites=true&w=majority');
+    await mongoose.connect(dbUrl);
 }
 
 main().then(function () {

@@ -10,6 +10,7 @@ $('.edit').on('click', function (event) {
             border: '1px solid #fdf1f4'
         })
         edit = !edit;
+        setEndOfContenteditable(dataDiv[0]);
     }
     else {
         edit = !edit;
@@ -34,6 +35,19 @@ function autoResize() {
     this.style.height = this.scrollHeight + 5 + 'px';
 }
 
+// placing cursor in div during edit
+function setEndOfContenteditable(contentEditableElement)
+{
+    var range,selection;
+    range = document.createRange();
+    range.selectNodeContents(contentEditableElement);
+    range.collapse(false);
+    selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
+
+// TODO do this without page reload
 // add journal using ajax
 $('#btn').on('click', function (event) {
     event.preventDefault();
